@@ -23,7 +23,7 @@ const Calculator = () => {
     }
     // Generate random background color
     const randomColor = () => {
-      let colors = ["#D1462F", "#FD8B51", "#0A81D1", "#D90368", "#257180"];
+      let colors = ["#D1462F", "#FD8B51", "#0A81D1", "#D90368", "#34a4b9"];
       const existingColors = party.map((member) => member.color);
       for (let i = 0; i < colors.length; i++) {
         if (existingColors.includes(colors[i])) {
@@ -32,7 +32,7 @@ const Calculator = () => {
         }
       }
       if (colors.length === 0) {
-        colors = ["#D1461F", "#FD8B52", "#0A81D2", "#D90468", "#257280"];
+        colors = ["#D1461F", "#FD8B52", "#0A81D2", "#D90468", "##34a4b8"];
       }
       let randomIndex = Math.floor(Math.random() * colors.length);
       if (arrayEmpty) {

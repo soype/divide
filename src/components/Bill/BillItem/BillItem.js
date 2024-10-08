@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import styles from "./BillItem.module.scss";
 
-const BillItem = ({ name, description, amount, price, members }) => {
+const BillItem = ({ name, quantity, price, members, party }) => {
+  const [matchingMembers, setMatchingMembers] = useState([]);
+
+  useEffect(() => {
+    party.map((member) => {
+      let newList = [];
+      // Check if member is inside matchingMembers
+      if (!matchingMembers.includes(member)) {
+        if (members.includes(member.id)) {
+          newList = [...matchingMembers, member];
+          setMatchingMembers(newList);
+        }
+      }
+    });
+  }, [party]);
+
   return (
     <div className={styles.billItem}>
       <div className={styles.billItem__container}>
@@ -13,11 +28,11 @@ const BillItem = ({ name, description, amount, price, members }) => {
         <div className={styles.billItem__bottom}>
           <div className={styles.billItem__numbers}>
             <p>
-              <span className={styles.billItem__price}>{price}</span> - <span className={styles.billItem__amount}>x{amount}</span>
+              <span className={styles.billItem__price}>{price}</span> - <span className={styles.billItem__quantity}>x{quantity}</span>
             </p>
           </div>
           <div className={styles.billItem__members}>
-            {members.map((member, index) => (
+            {matchingMembers.map((member, index) => (
               <div key={index} className={styles.billItem__member}>
                 <span className={styles.billItem__member__name}>{member.name}</span>
                 <span className={styles.billItem__member__color} style={{ backgroundColor: member.color }}></span>
@@ -27,7 +42,7 @@ const BillItem = ({ name, description, amount, price, members }) => {
         </div>
       </div>
       <div className={styles.billItem__total}>
-        <span className={styles.billItem__total__amount}>{price * amount}</span>
+        <span className={styles.billItem__total__quantity}>{price * quantity}</span>
       </div>
       <button className={styles.edit}></button>
       <button className={styles.delete}></button>

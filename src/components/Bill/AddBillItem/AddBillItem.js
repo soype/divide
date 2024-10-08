@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 import styles from "./AddBillItem.module.scss";
 
-const AddBillItem = ({ members }) => {
+const AddBillItem = ({ members, addItem }) => {
 
     const [allSelected, setAllSelected] = useState(false);
     const [selectedMembers, setSelectedMembers] = useState([]);
@@ -34,8 +34,11 @@ const AddBillItem = ({ members }) => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        console.log(e.target);
-        console.log(selectedMembers)
+        const formData = new FormData(e.target);
+        console.log(formData)
+        const name = formData.get('itemName');
+        const price = formData.get('price');
+        const quantity = formData.get('quantity')
     }
 
   return (
@@ -43,7 +46,7 @@ const AddBillItem = ({ members }) => {
       <h2>Agregar artículo</h2>
       <div className={styles.addBillItem__container}>
         <div className={styles.addBillItem__container__left}>
-          <input type="text" placeholder="Nombre del artículo" required />
+          <input type="text" name="itemName" placeholder="Nombre del artículo" required />
           <span></span>
           <div className={styles.addBillItem__list}>
             {members.map((member, index) => (
@@ -60,10 +63,10 @@ const AddBillItem = ({ members }) => {
         </div>
         <div className={styles.addBillItem__container__right}>
           <div className={`${styles.addBillItem__price} ${styles.addBillItem__field}`}>
-            <p>$ </p><input type="number" placeholder="0" required />
+            <p>$ </p><input name="price" type="number" placeholder="0" required />
           </div>
           <div className={`${styles.addBillItem__quantity} ${styles.addBillItem__field}`}>
-            <p>x </p><input type="number" placeholder="0" required />
+            <p>x </p><input name="quantity" type="number" placeholder="0" required />
           </div>
           
           <button type="submit" className={styles.addBillItem__addButton}>Agregar</button>
