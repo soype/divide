@@ -33,12 +33,12 @@ const AddBillItem = ({ members }) => {
           <div className={styles.addBillItem__list}>
             {members.map((member, index) => (
               <div key={index} className={styles.addBillItem__list__item}>
-                <label for={`${member.name}-${member.id}`}>{member.name}</label>
+                <label htmlFor={`${member.name}-${member.id}`}>{member.name}</label>
                 <input id={`${member.name}-${member.id}`} checked={selectedItems.includes(member.id)} onClick={() => selectItemHandler(member.id)} type="checkbox" style={{ backgroundColor: member.color }} />  
               </div>
             ))}
             <div className={`${styles.addBillItem__list__item} ${styles.addBillItem__list__all} `}>
-              <label for="all">All</label>
+              <label htmlFor="all">All</label>
               <input id="all" type="checkbox" onClick={selectAllHandler} />
             </div>
           </div>
