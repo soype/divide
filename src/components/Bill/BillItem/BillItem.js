@@ -8,7 +8,6 @@ const BillItem = ({ name, description, amount, price, members }) => {
       <div className={styles.billItem__container}>
         <div className={styles.billItem__top}>
           <h3 className={styles.billItem__title}>{name}</h3>
-          <p className={styles.billItem__description}>{description}</p>
         </div>
         <span className={styles.billItem__divider}></span>
         <div className={styles.billItem__bottom}>

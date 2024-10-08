@@ -1,0 +1,16 @@
+.form {
+  input {
+    border: none;
+    outline: none;
+    padding: 0.5rem 0;
+    width: 100%;
+    // border-bottom: dotted 1px grey;
+  }
+
+  &__submit {
+    display: none;
+    @media all and (max-width: 768px) {
+      display: block;
+    }
+  }
+}
