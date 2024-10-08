@@ -1,23 +1,31 @@
-import React from 'react'
+import React from "react";
 
-import styles from './AddBillItem.module.scss'
+import styles from "./AddBillItem.module.scss";
 
-const AddBillItem = ({members}) => {
-
+const AddBillItem = ({ members }) => {
   return (
     <form className={styles.addBillItem}>
-        <input type="text" placeholder="Item name" />
-        <textarea placeholder="Item description"></textarea>
-        <input type="number" placeholder="Item amount" />
-        <input type="number" placeholder="Item price" />
-        {members.map((member, index) => (
-            <div key={index}>
-                <input type="checkbox" placeholder={member.name} style={{ backgroundColor: member.color, opacity: 0.9 }} />
+      <div className={styles.addBillItem__container}>
+        <div className={styles.addBillItem__container__left}>
+          <input type="text" placeholder="Item name" required />
+          <span></span>
+          <div className={styles.addBillItem__list}>
+          {members.map((member, index) => (
+            <div key={index} className={styles.addBillItem__list__item}>
+              <label>{member.name}</label>
+              <input type="checkbox" style={{ backgroundColor: member.color }} />
             </div>
-        ))}
-        <button type="submit">Add</button>
+          ))}
+          </div>
+        </div>
+        <div className={styles.addBillItem__container__right}>
+          <input type="number" placeholder="Item price" required />
+          <input type="number" placeholder="Item amount" required />
+        </div>
+      </div>
+      <button type="submit">Add</button>
     </form>
-  )
-}
+  );
+};
 
-export default AddBillItem
+export default AddBillItem;

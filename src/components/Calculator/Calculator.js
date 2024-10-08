@@ -5,6 +5,8 @@ import React, { useState } from "react";
 import Party from "@/components/Party/Party";
 import Bill from "@/components/Bill/Bill";
 
+import styles from "./Calculator.module.scss";
+
 const Calculator = () => {
   const [party, setParty] = useState([
     {
@@ -58,10 +60,10 @@ const Calculator = () => {
   };
 
   return (
-    <>
+    <div className={styles.calculator}>
       <Party party={party} addMemberHandler={addMemberHandler} removeMemberHandler={removeMemberHandler} />
       <Bill party={party} />
-    </>
+    </div>
   );
 };
 
