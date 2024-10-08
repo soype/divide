@@ -3,8 +3,9 @@ import React from 'react'
 import styles from './Bill.module.scss'
 
 import BillItem from './BillItem/BillItem'
+import AddBillItem from './AddBillItem/AddBillItem'
 
-const Bill = () => {
+const Bill = ({party}) => {
 
     const items = [
         {
@@ -27,6 +28,7 @@ const Bill = () => {
 
   return (
     <div className={styles.bill}>
+        <AddBillItem members={party} />
         {items.map((item, index) => (
             <BillItem key={index} {...item} />
         ))}
