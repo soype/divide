@@ -17,7 +17,7 @@ $button-height: 4rem;
 
   &__list {
     display: flex;
-    gap: 1rem;
+    gap: $button-height / 8;
     position: relative;
 
     &__item {
@@ -57,6 +57,44 @@ $button-height: 4rem;
         transform: translate(-50%, -50%);
         pointer-events: none;
       }
+    }
+
+    &__all{
+        position: relative;
+        input {
+            height: $button-height;
+            width: $button-width;
+            appearance: none;
+            -webkit-appearance: none;
+            display: flex;
+            align-content: center;
+            justify-content: center;
+            padding: 0.1rem;
+            opacity: 0.5;
+            border-radius: 100%;
+            z-index: 2;
+            background-color: rgb(91, 175, 91);
+    
+            transition: all 0.3s;
+            cursor: pointer;
+    
+            &:hover {
+              opacity: 1;
+            }
+    
+            &:checked {
+              opacity: 1;
+            }
+          }
+
+          label {
+            position: absolute;
+            z-index: 1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+          }
     }
   }
 }
