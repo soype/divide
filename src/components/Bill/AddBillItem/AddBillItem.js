@@ -1,11 +1,23 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 
 import styles from "./AddBillItem.module.scss";
 
-const AddBillItem = ({ members, addItem }) => {
+const AddBillItem = ({ members, addItem, editedItem }) => {
 
     const [allSelected, setAllSelected] = useState(false);
     const [selectedMembers, setSelectedMembers] = useState([]);
+    const [name, setName] = useState('');
+    const [quantity, setQuantity] = useState('');
+    const [price, setPrice] = useState('');
+
+  useEffect(() => {
+      if(editedItem){
+          setName(editedItem.name);
+          setQuantity(editedItem.quantity);
+          setPrice(editedItem.price);
+          setSelectedMembers(editedItem.members);
+      }
+    }, [editedItem]);
 
     const selectAllHandler = () => {
         setAllSelected(!allSelected);
@@ -34,17 +46,34 @@ const AddBillItem = ({ members, addItem }) => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        const formData = new FormData(e.target);
-        const name = formData.get('itemName');
-        const price = formData.get('price');
-        const quantity = formData.get('quantity');
         const item = {
+          id: Math.random(),
           name: name,
           quantity: quantity,
           price: price,
           members: selectedMembers
         }
         addItem(item);
+        // Clear items
+        setName('');
+        setQuantity('');
+        setPrice('');
+        setSelectedMembers([]);
+        if(allSelected){
+          setAllSelected(false);
+        }
+    }
+
+    const nameHandler = (e) => {
+      setName(e.target.value);
+    }
+
+    const priceHandler = (e) => {
+      setPrice(e.target.value);
+    }
+
+    const quantityHandler = (e) => {
+      setQuantity(e.target.value);
     }
 
   return (
@@ -52,7 +81,7 @@ const AddBillItem = ({ members, addItem }) => {
       <h2>Agregar artículo</h2>
       <div className={styles.addBillItem__container}>
         <div className={styles.addBillItem__container__left}>
-          <input type="text" name="itemName" placeholder="Nombre del artículo" required />
+          <input type="text" name="itemName" placeholder="Nombre del artículo" onChange={nameHandler} value={name} required />
           <span></span>
           <div className={styles.addBillItem__list}>
             {members.map((member, index) => (
@@ -69,10 +98,10 @@ const AddBillItem = ({ members, addItem }) => {
         </div>
         <div className={styles.addBillItem__container__right}>
           <div className={`${styles.addBillItem__price} ${styles.addBillItem__field}`}>
-            <p>$ </p><input name="price" type="number" placeholder="0" required />
+            <p>$ </p><input name="price" type="number" placeholder="0" value={price} onChange={priceHandler} required />
           </div>
           <div className={`${styles.addBillItem__quantity} ${styles.addBillItem__field}`}>
-            <p>x </p><input name="quantity" type="number" placeholder="0" required />
+            <p>x </p><input name="quantity" type="number" placeholder="0" value={quantity} onChange={quantityHandler} required />
           </div>
           
           <button type="submit" className={styles.addBillItem__addButton}>Agregar</button>
