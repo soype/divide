@@ -7,15 +7,7 @@ import AddBillItem from './AddBillItem/AddBillItem'
 
 const Bill = ({party}) => {
 
-    const [items, setItems] = useState([
-        {
-            id: 1,
-            name: 'Carne',
-            quantity: 2,
-            price: 3500,
-            members: [1]
-        }
-    ])
+    const [items, setItems] = useState([])
 
     const [editedItem, setEditedItem] = useState(null);
 
@@ -30,12 +22,11 @@ const Bill = ({party}) => {
     const editItemHandler = (id, item) => {
         setEditedItem(item);
         setItems(items.filter(item => item.id !== id));
-
     }
 
   return (
     <div className={styles.bill}>
-        <AddBillItem members={party} addItem={addItemHandler} editItem={editedItem} />
+        <AddBillItem members={party} addItem={addItemHandler} editedItem={editedItem} />
         <span className={styles.divider}></span>
         <div className={styles.bill__container}>
         {items.map((item, index) => (

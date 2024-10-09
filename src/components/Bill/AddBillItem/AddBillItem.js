@@ -9,6 +9,7 @@ const AddBillItem = ({ members, addItem, editedItem }) => {
     const [name, setName] = useState('');
     const [quantity, setQuantity] = useState('');
     const [price, setPrice] = useState('');
+    const [error, setError] = useState(false);
 
   useEffect(() => {
       if(editedItem){
@@ -46,8 +47,14 @@ const AddBillItem = ({ members, addItem, editedItem }) => {
 
     const submitHandler = (e) => {
         e.preventDefault();
+        if(selectedMembers.length < 1 || quantity < 1 || price < 1){
+          setError(true);
+          return;
+        }else{
+          setError(false);
+        }
         const item = {
-          id: Math.random(),
+          id: Math.random().toFixed(3),
           name: name,
           quantity: quantity,
           price: price,
@@ -107,7 +114,7 @@ const AddBillItem = ({ members, addItem, editedItem }) => {
           <button type="submit" className={styles.addBillItem__addButton}>Agregar</button>
         </div>
       </div>
-      
+      {error && <p className={styles.error}>Por favor, completá todos los campos</p>}
     </form>
   );
 };

@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import styles from "./BillItem.module.scss";
 
 const BillItem = ({ id, name, quantity, price, members, party, removeItem, editItem }) => {
-  
   const [matchingMembers, setMatchingMembers] = useState([]);
 
   useEffect(() => {
@@ -12,8 +11,18 @@ const BillItem = ({ id, name, quantity, price, members, party, removeItem, editI
   }, [party]);
 
   const removeItemHandler = (e) => {
-    removeItem(e.target.getAttribute('pointer'))
-  }
+    removeItem(e.target.getAttribute("pointer"));
+  };
+
+  const editItemHandler = (e) => {
+    const item = {
+      name: name,
+      quantity: quantity,
+      price: price,
+      members: members
+    }
+    editItem(e.target.getAttribute("pointer"), item);
+  };
 
   return (
     <div className={styles.billItem} id={id}>
@@ -34,8 +43,12 @@ const BillItem = ({ id, name, quantity, price, members, party, removeItem, editI
         <div className={styles.billItem__container__right}>
           <div className={`${styles.billItem__price} ${styles.billItem__field}`}>$ {price * quantity}</div>
           <div className={styles.billItem__buttons}>
-            <button className={styles.billItem__buttons__edit} pointer={id}>Editar</button>
-            <button className={styles.billItem__buttons__delete} pointer={id} onClick={removeItemHandler}>Borrar</button>
+            <button className={styles.billItem__buttons__edit} pointer={id} onClick={editItemHandler}>
+              Editar
+            </button>
+            <button className={styles.billItem__buttons__delete} pointer={id} onClick={removeItemHandler}>
+              Borrar
+            </button>
           </div>
         </div>
       </div>
