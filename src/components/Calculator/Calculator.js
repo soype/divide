@@ -2,11 +2,12 @@
 
 import React, { useState } from "react";
 
-import Party from "@/components/Party/Party";
-import Bill from "@/components/Bill/Bill";
+import Party from "@/components/Calculator/Party/Party";
+import Bill from "@/components/Calculator/Bill/Bill";
+import AddBillItem from "./Bill/AddBillItem/AddBillItem";
 
 import styles from "./Calculator.module.scss";
-import AddBillItem from "../Bill/AddBillItem/AddBillItem";
+
 
 const Calculator = () => {
   const [party, setParty] = useState([
