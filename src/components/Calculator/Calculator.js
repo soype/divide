@@ -6,6 +6,7 @@ import Party from "@/components/Party/Party";
 import Bill from "@/components/Bill/Bill";
 
 import styles from "./Calculator.module.scss";
+import AddBillItem from "../Bill/AddBillItem/AddBillItem";
 
 const Calculator = () => {
   const [party, setParty] = useState([
@@ -15,6 +16,8 @@ const Calculator = () => {
       color: "#FD8B51",
     },
   ]);
+  const [items, setItems] = useState([]);
+  const [editedItem, setEditedItem] = useState(null);
 
   const addMemberHandler = (name) => {
     let arrayEmpty = true;
@@ -59,10 +62,26 @@ const Calculator = () => {
     setParty(party.filter((member) => member.id !== id));
   };
 
+  const addItemHandler = (item) => {
+    setItems([...items, item]);
+  };
+
+  const removeItemHandler = (id) => {
+    setItems(items.filter((item) => item.id !== id));
+  };
+
+  const editItemHandler = (id, item) => {
+    setEditedItem(item);
+    setItems(items.filter((item) => item.id !== id));
+  };
+
   return (
     <div className={styles.calculator}>
-      <Party party={party} addMemberHandler={addMemberHandler} removeMemberHandler={removeMemberHandler} />
-      <Bill party={party} />
+      <div className={styles.calculator__controls}>
+        <Party party={party} addMemberHandler={addMemberHandler} removeMemberHandler={removeMemberHandler} />
+        <AddBillItem members={party} addItem={addItemHandler} editedItem={editedItem} />
+      </div>
+      <Bill party={party} items={items} removeItem={removeItemHandler} editItem={editItemHandler} />
     </div>
   );
 };

@@ -1,4 +1,5 @@
 .form {
+    display: flex;
   input {
     border: none;
     outline: none;
@@ -11,6 +12,17 @@
     display: none;
     @media all and (max-width: 768px) {
       display: block;
+    }
+    border: solid 1px transparent;
+    background-color: rgba(95, 198, 99, .7);
+    padding: .5rem .5rem;
+    border-radius: 2rem;
+    transition: all .3s;
+    cursor: pointer;
+
+    &:hover{
+      background-color: rgba(95, 198, 99, 1);
+      border: solid 1px rgba(95, 198, 99, 1);
     }
   }
 }
