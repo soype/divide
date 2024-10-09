@@ -9,10 +9,10 @@ const Bill = ({party}) => {
 
     const [items, setItems] = useState([
         {
-            name: "Item 1",
-            quantity: 3,
-            price: 100,
-            members: [1, 2]
+            name: 'Carne',
+            quantity: 2,
+            price: 3500,
+            members: [1]
         }
     ])
 
@@ -23,9 +23,12 @@ const Bill = ({party}) => {
   return (
     <div className={styles.bill}>
         <AddBillItem members={party} addItem={addItemHandler} />
+        <span className={styles.divider}></span>
+        <div className={styles.bill__container}>
         {items.map((item, index) => (
             <BillItem key={index} {...item} party={party} />
         ))}
+        </div>
     </div>
   )
 }

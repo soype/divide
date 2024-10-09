@@ -35,10 +35,16 @@ const AddBillItem = ({ members, addItem }) => {
     const submitHandler = (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
-        console.log(formData)
         const name = formData.get('itemName');
         const price = formData.get('price');
-        const quantity = formData.get('quantity')
+        const quantity = formData.get('quantity');
+        const item = {
+          name: name,
+          quantity: quantity,
+          price: price,
+          members: selectedMembers
+        }
+        addItem(item);
     }
 
   return (

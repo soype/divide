@@ -6,46 +6,35 @@ const BillItem = ({ name, quantity, price, members, party }) => {
   const [matchingMembers, setMatchingMembers] = useState([]);
 
   useEffect(() => {
-    party.map((member) => {
-      let newList = [];
-      // Check if member is inside matchingMembers
-      if (!matchingMembers.includes(member)) {
-        if (members.includes(member.id)) {
-          newList = [...matchingMembers, member];
-          setMatchingMembers(newList);
-        }
-      }
-    });
+    // Filter the members based on the party and members list
+    const newList = party.filter((member) => members.includes(member.id));
+    setMatchingMembers(newList);
   }, [party]);
 
   return (
     <div className={styles.billItem}>
       <div className={styles.billItem__container}>
-        <div className={styles.billItem__top}>
-          <h3 className={styles.billItem__title}>{name}</h3>
-        </div>
-        <span className={styles.billItem__divider}></span>
-        <div className={styles.billItem__bottom}>
-          <div className={styles.billItem__numbers}>
-            <p>
-              <span className={styles.billItem__price}>{price}</span> - <span className={styles.billItem__quantity}>x{quantity}</span>
-            </p>
-          </div>
-          <div className={styles.billItem__members}>
+        <div className={styles.billItem__container__left}>
+          <h3>
+            {name} x{quantity}
+          </h3>
+          <span className={styles.divider}></span>
+          <div className={styles.billItem__list}>
             {matchingMembers.map((member, index) => (
-              <div key={index} className={styles.billItem__member}>
+              <div key={index} className={styles.billItem__list__member} style={{ backgroundColor: member.color }}>
                 <span className={styles.billItem__member__name}>{member.name}</span>
-                <span className={styles.billItem__member__color} style={{ backgroundColor: member.color }}></span>
               </div>
             ))}
           </div>
         </div>
+        <div className={styles.billItem__container__right}>
+          <div className={`${styles.billItem__price} ${styles.billItem__field}`}>$ {price * quantity}</div>
+          <div className={styles.billItem__buttons}>
+            <button className={styles.billItem__buttons__edit}>Editar</button>
+            <button className={styles.billItem__buttons__delete}>Borrar</button>
+          </div>
+        </div>
       </div>
-      <div className={styles.billItem__total}>
-        <span className={styles.billItem__total__quantity}>{price * quantity}</span>
-      </div>
-      <button className={styles.edit}></button>
-      <button className={styles.delete}></button>
     </div>
   );
 };
