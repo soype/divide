@@ -5,7 +5,7 @@ import styles from './Bill.module.scss'
 import BillItem from './BillItem/BillItem'
 import AddBillItem from './AddBillItem/AddBillItem'
 
-const Bill = ({party, items, editItem, removeItem}) => {
+const Bill = ({party, items, editItem, removeItem, hideBill, showBill}) => {
 
     const removeItemHandler = (id) => {
         removeItem(id);
@@ -16,14 +16,20 @@ const Bill = ({party, items, editItem, removeItem}) => {
     }
 
   return (
-    <div className={styles.bill}>
-        {/* <AddBillItem members={party} addItem={addItemHandler} editedItem={editedItem} /> */}
+    <div className={`${styles.bill} ${hideBill ? styles['bill--hide'] : ''}`}>
         <span className={styles.divider}></span>
-        <div className={styles.bill__container}>
-        {items.map((item) => (
-            <BillItem key={item.id} {...item} party={party} removeItem={removeItemHandler} editItem={editItemHandler} />
-        ))}
+        <div className={styles['bill__animator']}>
+            <div className={styles.bill__container}>
+            {items.map((item) => (
+                <BillItem key={item.id} {...item} party={party} removeItem={removeItemHandler} editItem={editItemHandler} />
+            ))}
+            </div>
         </div>
+        {items.length > 1 && <div className={styles['bill__hide-bill']}>
+            <button className={styles['bill__hide-bill__button']} onClick={() => showBill()}>
+                {hideBill ? 'Mostrar cuenta' : 'Esconder cuenta'}
+            </button>
+        </div>}
     </div>
   )
 }

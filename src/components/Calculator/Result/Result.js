@@ -41,7 +41,7 @@ const Result = ({ items, members }) => {
 
   return (
     <div className={styles.result}>
-      <h2>Total a pagar: {formatNumber(totalBill)}</h2>
+      <h2>Total a pagar: $ {formatNumber(totalBill)}</h2>
       <div className={styles.result__members}>
         {parsedMembers.map((member) => (
           <div className={styles.result__member} key={member.id}>

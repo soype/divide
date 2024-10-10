@@ -21,6 +21,7 @@ const Calculator = () => {
   const [items, setItems] = useState([]);
   const [editedItem, setEditedItem] = useState(null);
   const [showResults, setShowResults] = useState(false);
+  const [hideBill, setHideBill] = useState(false);
 
   const addMemberHandler = (name) => {
     let arrayEmpty = true;
@@ -78,14 +79,23 @@ const Calculator = () => {
     setItems(items.filter((item) => item.id !== id));
   };
 
+  const showBillHandler = () => {
+    setHideBill(!hideBill);
+  }
+
+  const showResultsHandler = () => {
+    setShowResults(true);
+    setHideBill(false);
+  }
+
   return (
     <div className={styles.calculator}>
       <div className={styles.calculator__controls}>
         <Party party={party} addMemberHandler={addMemberHandler} removeMemberHandler={removeMemberHandler} />
         <AddBillItem members={party} addItem={addItemHandler} editedItem={editedItem} />
       </div>
-      <Bill party={party} items={items} removeItem={removeItemHandler} editItem={editItemHandler} />
-      <button className={styles.calculator__button} onClick={() => setShowResults(true)} >Divide!</button>
+      <Bill party={party} items={items} removeItem={removeItemHandler} editItem={editItemHandler} hideBill={hideBill} showBill={showBillHandler} />
+      <button className={styles.calculator__button} onClick={showResultsHandler} >Divide!</button>
       {showResults && <Result items={items} members={party} />}
     </div>
   );
