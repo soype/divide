@@ -10,9 +10,9 @@ const PartyMember = ({id, name, color, removeHandler}) => {
     }
 
   return (
-    <div className={styles["party-member"]} onClick={removeMemberHandler} id={id} style={{backgroundColor:color}}>
+    <button className={styles["party-member"]} onClick={removeMemberHandler} id={id} style={{backgroundColor:color}}>
         <p>{name}</p>
-    </div>
+    </button>
   )
 }
 

@@ -9,16 +9,47 @@ import Result from "./Result/Result";
 
 import styles from "./Calculator.module.scss";
 
-
 const Calculator = () => {
   const [party, setParty] = useState([
     {
-      id: 1,
-      name: "Pedro",
-      color: "#FD8B51",
+        "id": 1,
+        "name": "Pedro",
+        "color": "#FD8B51"
+    },
+    {
+        "id": 2,
+        "name": "Ale",
+        "color": "#34a4b9"
+    },
+    {
+        "id": 3,
+        "name": "Ivo",
+        "color": "#0A81D1"
+    }
+]);
+  const [items, setItems] = useState([
+    {
+      id: "0.168",
+      name: "Carne",
+      quantity: "1",
+      price: "3000",
+      members: [1],
+    },
+    {
+      id: "0.197",
+      name: "Vino",
+      quantity: "1",
+      price: "3000",
+      members: [2],
+    },
+    {
+      id: "0.753",
+      name: "Fideos",
+      quantity: "1",
+      price: "3000",
+      members: [3],
     },
   ]);
-  const [items, setItems] = useState([]);
   const [editedItem, setEditedItem] = useState(null);
   const [showResults, setShowResults] = useState(false);
   const [hideBill, setHideBill] = useState(false);
@@ -81,12 +112,12 @@ const Calculator = () => {
 
   const showBillHandler = () => {
     setHideBill(!hideBill);
-  }
+  };
 
   const showResultsHandler = () => {
     setShowResults(true);
-    setHideBill(false);
-  }
+    setHideBill(true);
+  };
 
   return (
     <div className={styles.calculator}>
@@ -95,7 +126,9 @@ const Calculator = () => {
         <AddBillItem members={party} addItem={addItemHandler} editedItem={editedItem} />
       </div>
       <Bill party={party} items={items} removeItem={removeItemHandler} editItem={editItemHandler} hideBill={hideBill} showBill={showBillHandler} />
-      <button className={styles.calculator__button} onClick={showResultsHandler} >Divide!</button>
+      <button className={styles.calculator__button} onClick={showResultsHandler}>
+        Divide!
+      </button>
       {showResults && <Result items={items} members={party} />}
     </div>
   );

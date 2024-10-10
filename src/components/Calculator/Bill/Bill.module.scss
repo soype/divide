@@ -7,8 +7,9 @@
 
     &--hide{
         .bill__container{
-            height: 120px;
-            overflow: hidden;
+            .wrapper{
+                grid-template-rows: 0fr;
+            }
         }
     }
 
@@ -26,6 +27,15 @@
         border-radius: 1rem;
         gap: 1rem;
         height: 100%;
+
+        .wrapper{
+            display: grid;
+            grid-template-rows: 1fr;
+            transition: all .5s;
+        }
+        .inner{
+            overflow: hidden;
+        }
     }
 
     &__hide-bill{
@@ -43,5 +53,18 @@
         background: linear-gradient(0deg, rgba(43,43,43,.2) 0%, rgba(43,43,43,0) 75%);
         border-bottom-left-radius: 1rem;
         border-bottom-right-radius: 1rem;
+
+        &__button{
+            border: 1px solid transparent;
+            background-color: transparent;
+            color: rgb(163, 22, 163);
+            transition: color .3s;
+            cursor: pointer;
+            @media all and (min-width: 768px){
+                &:hover{
+                    color: rgb(128, 17, 128);
+                }
+            }
+        }
     }
 }

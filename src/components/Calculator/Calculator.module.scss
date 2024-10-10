@@ -19,4 +19,14 @@
             flex-direction: column;
         }
     }
+
+    &__button{
+        margin: auto;
+        max-width: 600px;
+        background-color: aquamarine;
+        width: 100%;
+        border: 1px solid transparent;
+        border-radius: 1rem;
+        padding: .5rem 1rem;
+    }
 }
