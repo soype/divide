@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import Party from "@/components/Calculator/Party/Party";
 import Bill from "@/components/Calculator/Bill/Bill";
 import AddBillItem from "./Bill/AddBillItem/AddBillItem";
+import Result from "./Result/Result";
 
 import styles from "./Calculator.module.scss";
 
@@ -19,6 +20,7 @@ const Calculator = () => {
   ]);
   const [items, setItems] = useState([]);
   const [editedItem, setEditedItem] = useState(null);
+  const [showResults, setShowResults] = useState(false);
 
   const addMemberHandler = (name) => {
     let arrayEmpty = true;
@@ -83,6 +85,8 @@ const Calculator = () => {
         <AddBillItem members={party} addItem={addItemHandler} editedItem={editedItem} />
       </div>
       <Bill party={party} items={items} removeItem={removeItemHandler} editItem={editItemHandler} />
+      <button className={styles.calculator__button} onClick={() => setShowResults(true)} >Divide!</button>
+      {showResults && <Result items={items} members={party} />}
     </div>
   );
 };

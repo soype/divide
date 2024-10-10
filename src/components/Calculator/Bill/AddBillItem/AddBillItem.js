@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from "react";
 
+import formatNumber from "@/lib/FormatNumber";
+
 import styles from "./AddBillItem.module.scss";
 
 const AddBillItem = ({ members, addItem, editedItem }) => {

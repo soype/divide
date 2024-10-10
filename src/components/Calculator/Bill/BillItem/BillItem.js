@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+import formatNumber from "@/lib/FormatNumber";
+
 import styles from "./BillItem.module.scss";
 
 const BillItem = ({ id, name, quantity, price, members, party, removeItem, editItem }) => {
@@ -41,7 +43,7 @@ const BillItem = ({ id, name, quantity, price, members, party, removeItem, editI
           </div>
         </div>
         <div className={styles.billItem__container__right}>
-          <div className={`${styles.billItem__price} ${styles.billItem__field}`}>$ {price * quantity}</div>
+          <div className={`${styles.billItem__price} ${styles.billItem__field}`}>$ {formatNumber(price * quantity)}</div>
           <div className={styles.billItem__buttons}>
             <button className={styles.billItem__buttons__edit} pointer={id} onClick={editItemHandler}>
               Editar
