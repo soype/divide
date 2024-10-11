@@ -47,7 +47,7 @@ const Modal = ({ editMember, showModal, addMember, removeMember }) => {
             Agregar
           </Button>
         )}
-        <div aria-role="button" aria-label="Cerrar dialogo" className={styles["modal__close"]} onClick={editMemberHandler}>
+        <div aria-label="Cerrar dialogo" className={styles["modal__close"]} onClick={editMemberHandler}>
         X
       </div>
       </form>
