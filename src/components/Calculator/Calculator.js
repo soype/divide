@@ -26,6 +26,7 @@ const Calculator = () => {
   };
 
   const addMemberHandler = (name, email, id, color) => {
+
     setEditMember(null);  
     let arrayEmpty = true;
     if (party.length >= 1) {
@@ -60,6 +61,9 @@ const Calculator = () => {
     };
 
     // Handle edit
+
+    let newParty = [...party];
+
     if(!id){
       id = Math.random().toFixed(3);
     }
@@ -74,12 +78,19 @@ const Calculator = () => {
       email: email,
       color: color
     }
-    setParty([...party, newMember]);
+
+    if(newParty.find((member) => member.id === id)){
+      const index = newParty.findIndex((member) => member.id === id);
+      newParty[index] = newMember;
+    }else{
+      newParty.push(newMember);
+    }
+
+    setParty(newParty);
   };
 
   const editMemberHandler = (id) => {
     setEditMember(party.find((member) => member.id === id));
-    setParty(party.filter((member) => member.id !== id));
     setShowModal(true);
     setShowResults(false);
   };
