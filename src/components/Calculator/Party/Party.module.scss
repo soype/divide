@@ -10,6 +10,19 @@
     gap: .5rem;
     flex: 1;
 
+    &__top{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        padding-bottom: 1rem;
+
+        @media all and (max-width: 768px){
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
     span{
         width: 100%;
         height: 1px;

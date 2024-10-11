@@ -46,7 +46,7 @@ const Result = ({ items, members }) => {
         {parsedMembers.map((member) => (
           <div className={styles.result__member} key={member.id}>
             <p>
-              {member.name} puso $ {formatNumber(member.total)}, {member.toPay < 0 ? <span>debe recibir $ {formatNumber(-member.toPay)}</span> : <span>debe pagar $ {formatNumber(member.toPay)}</span>}
+              {member.name} puso $ {formatNumber(member.total)} <br/> {member.toPay < 0 ? <span>debe recibir $ {formatNumber(-member.toPay)}</span> : <span>debe pagar $ {formatNumber(member.toPay)}</span>}
             </p>
           </div>
         ))}

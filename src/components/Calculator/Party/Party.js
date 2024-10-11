@@ -18,16 +18,19 @@ const Party = ({ party, showModal, editMemberHandler }) => {
 
   return (
     <div className={styles.party}>
-      <h2>Grupo</h2>
+      <div className={styles['party__top']}>
+        <h2>¿Quiénes están hoy?</h2>
+        <div className={styles['party__add']}>
+          <Button color={'green'} customClass={'small'} onClick={addMember}>Agregar integrante</Button>
+        </div>
+      </div>
+      
       <span></span>
       <ul className={styles['party__members']}>
         {party.map((member, index) => (
           <PartyMember key={index} name={member.name} id={member.id} color={member.color} editMember={editMember} />
         ))}
       </ul>
-      <div className={styles['party__add']}>
-        <Button color={'green'} customClass={'small'} onClick={addMember}>Agregar integrante</Button>
-      </div>
     </div>
   );
 };
