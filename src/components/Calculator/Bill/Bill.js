@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 
 import styles from "./Bill.module.scss";
 
 import BillItem from "./BillItem/BillItem";
-import AddBillItem from "./AddBillItem/AddBillItem";
 
 const Bill = ({ party, items, editItem, removeItem, hideBill, showBill }) => {
   const removeItemHandler = (id) => {

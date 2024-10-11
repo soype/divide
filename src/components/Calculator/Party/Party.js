@@ -2,7 +2,6 @@
 
 import React from "react";
 
-import AddMember from "./AddMember/AddMember";
 import PartyMember from "./PartyMember/PartyMember";
 import Button from "@/components/UI/Button/Button";
 
