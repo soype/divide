@@ -7,55 +7,26 @@ import Bill from "@/components/Calculator/Bill/Bill";
 import AddBillItem from "./Bill/AddBillItem/AddBillItem";
 import Result from "./Result/Result";
 import Button from "../UI/Button/Button";
+import Modal from "./PartyModal/Modal";
 
 import styles from "./Calculator.module.scss";
 
 const Calculator = () => {
-  const [party, setParty] = useState([
-    {
-        "id": 1,
-        "name": "Pedro",
-        "color": "#FD8B51"
-    },
-    {
-        "id": 2,
-        "name": "Ale",
-        "color": "#34a4b9"
-    },
-    {
-        "id": 3,
-        "name": "Ivo",
-        "color": "#0A81D1"
-    }
-]);
-  const [items, setItems] = useState([
-    {
-      id: "0.168",
-      name: "Carne",
-      quantity: "1",
-      price: "3000",
-      members: [1],
-    },
-    {
-      id: "0.197",
-      name: "Vino",
-      quantity: "1",
-      price: "3000",
-      members: [2],
-    },
-    {
-      id: "0.753",
-      name: "Fideos",
-      quantity: "1",
-      price: "3000",
-      members: [3],
-    },
-  ]);
+  const [party, setParty] = useState([]);
+  const [items, setItems] = useState([]);
   const [editedItem, setEditedItem] = useState(null);
   const [showResults, setShowResults] = useState(false);
   const [hideBill, setHideBill] = useState(false);
+  const [editMember, setEditMember] = useState();
+  const [showModal, setShowModal] = useState(false);
 
-  const addMemberHandler = (name) => {
+
+  const showModalHandler = () => {
+    setShowModal(true);
+  };
+
+  const addMemberHandler = (name, email, id, color) => {
+    setEditMember(null);  
     let arrayEmpty = true;
     if (party.length >= 1) {
       arrayEmpty = false;
@@ -87,11 +58,30 @@ const Calculator = () => {
         }
       }
     };
-    if (!arrayEmpty) {
-      setParty([...party, { id: party[party.length - 1].id + 1, name: name, color: randomColor() }]);
-    } else {
-      setParty([{ id: 1, name: name, color: randomColor() }]);
+
+    // Handle edit
+    if(!id){
+      id = Math.random().toFixed(3);
     }
+    if(!color){
+      color = randomColor();
+    }
+
+    // Add member
+    const newMember = {
+      id: id,
+      name: name,
+      email: email,
+      color: color
+    }
+    setParty([...party, newMember]);
+  };
+
+  const editMemberHandler = (id) => {
+    setEditMember(party.find((member) => member.id === id));
+    setParty(party.filter((member) => member.id !== id));
+    setShowModal(true);
+    setShowResults(false);
   };
 
   const removeMemberHandler = (id) => {
@@ -122,13 +112,17 @@ const Calculator = () => {
 
   return (
     <div className={styles.calculator}>
+      <h1>Divide</h1>
+      {showModal && <div className={styles['modal-background']} >
+        <Modal editMember={editMember} showModal={setShowModal} addMember={addMemberHandler} removeMember={removeMemberHandler}></Modal>
+      </div>}
       <div className={styles.calculator__controls}>
-        <Party party={party} addMemberHandler={addMemberHandler} removeMemberHandler={removeMemberHandler} />
+        <Party party={party} showModal={showModalHandler} editMemberHandler={editMemberHandler} />
         <AddBillItem members={party} addItem={addItemHandler} editedItem={editedItem} />
       </div>
       <Bill party={party} items={items} removeItem={removeItemHandler} editItem={editItemHandler} hideBill={hideBill} showBill={showBillHandler} />
       <div className={styles.calculator__button}>
-        <Button color={"blue"} customClass={"divide"} onClick={showResultsHandler}>Divide</Button>
+        <Button color={"blue"} customClass={"divide"} onClick={showResultsHandler}>Dividir!</Button>
       </div>
       {showResults && <Result items={items} members={party} />}
     </div>

@@ -9,10 +9,10 @@
   }
 
   &__submit {
-    display: none;
-    @media all and (max-width: 768px) {
-      display: block;
-    }
+    // display: none;
+    // @media all and (max-width: 768px) {
+    //   display: block;
+    // }
     border: solid 1px transparent;
     background-color: rgba(95, 198, 99, .7);
     padding: .5rem .5rem;

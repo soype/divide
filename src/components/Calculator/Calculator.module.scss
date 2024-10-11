@@ -26,3 +26,17 @@
         width: 100%;
     }
 }
+
+.modal-background{
+    position: fixed;
+    left: 0rem;
+    top: 0;
+    z-index: 99;
+    height: 100dvh;
+    width: 100%;
+    background: rgba(168, 168, 168, 0.5);
+
+    & > div{
+        z-index: 100;
+    }
+}
