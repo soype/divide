@@ -6,6 +6,7 @@ import Party from "@/components/Calculator/Party/Party";
 import Bill from "@/components/Calculator/Bill/Bill";
 import AddBillItem from "./Bill/AddBillItem/AddBillItem";
 import Result from "./Result/Result";
+import Button from "../UI/Button/Button";
 
 import styles from "./Calculator.module.scss";
 
@@ -126,9 +127,9 @@ const Calculator = () => {
         <AddBillItem members={party} addItem={addItemHandler} editedItem={editedItem} />
       </div>
       <Bill party={party} items={items} removeItem={removeItemHandler} editItem={editItemHandler} hideBill={hideBill} showBill={showBillHandler} />
-      <button className={styles.calculator__button} onClick={showResultsHandler}>
-        Divide!
-      </button>
+      <div className={styles.calculator__button}>
+        <Button color={"blue"} customClass={"divide"} onClick={showResultsHandler}>Divide</Button>
+      </div>
       {showResults && <Result items={items} members={party} />}
     </div>
   );

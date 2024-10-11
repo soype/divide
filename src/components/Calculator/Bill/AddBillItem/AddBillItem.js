@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 
-import formatNumber from "@/lib/FormatNumber";
+import Button from "@/components/UI/Button/Button";
 
 import styles from "./AddBillItem.module.scss";
 
@@ -112,8 +112,7 @@ const AddBillItem = ({ members, addItem, editedItem }) => {
           <div className={`${styles.addBillItem__quantity} ${styles.addBillItem__field}`}>
             <p>x </p><input name="quantity" type="number" placeholder="0" value={quantity} onChange={quantityHandler} required />
           </div>
-          
-          <button type="submit" className={styles.addBillItem__addButton}>Agregar</button>
+          <Button customClass={'small'} color={'green'}>Agregar</Button>
         </div>
       </div>
       {error && <p className={styles.error}>Por favor, completá todos los campos</p>}
