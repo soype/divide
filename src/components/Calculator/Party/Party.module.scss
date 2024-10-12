@@ -1,6 +1,7 @@
 .party{
     border-radius: 1rem;
     box-shadow: 0 0 20px 3px hsla(212,7%,43%,.1);
+    background-color: #f9f1eb;
     width: 100%;
     margin: 0 auto;
     padding: 1rem;
@@ -33,5 +34,8 @@
         display: flex;
         gap: .5rem;
         flex-wrap: wrap;
+        @media all and (max-width:768px){
+            justify-content: center;
+        }
     }
 }

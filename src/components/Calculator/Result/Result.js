@@ -8,6 +8,9 @@ const Result = ({ items, members }) => {
   const [totalBill, setTotalBill] = useState();
   const [parsedMembers, setParsedMembers] = useState([]);
 
+  console.log(items)
+  console.log(members)
+
   useEffect(() => {
     let total = 0;
 
@@ -42,15 +45,18 @@ const Result = ({ items, members }) => {
   return (
     <div className={styles.result}>
       <h2>Total a pagar: $ {formatNumber(totalBill)}</h2>
-      <div className={styles.result__members}>
+      <ul className={styles.result__members}>
         {parsedMembers.map((member) => (
-          <div className={styles.result__member} key={member.id}>
+          <li className={styles.result__member} key={member.id}>
             <p>
-              {member.name} puso $ {formatNumber(member.total)} <br/> {member.toPay < 0 ? <span>debe recibir $ {formatNumber(-member.toPay)}</span> : <span>debe pagar $ {formatNumber(member.toPay)}</span>}
+              <strong>{member.name}</strong> puso $ {formatNumber(member.total)} 
             </p>
-          </div>
+            <p>
+            {member.name} {member.toPay < 0 ? <span>debe <strong className={styles.receive}>recibir</strong> $ {formatNumber(-member.toPay)}</span> : <span>debe <strong className={styles.pay}>pagar</strong> $ {formatNumber(member.toPay)}</span>}
+            </p>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 };

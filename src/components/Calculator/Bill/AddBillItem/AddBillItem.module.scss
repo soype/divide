@@ -3,8 +3,9 @@ $button-height: 3rem;
 $button-text: 0.75rem;
 
 .addBillItem {
-  background-color: white;
-  box-shadow: 0 0 20px 3px hsla(212, 7%, 43%, 0.1);
+  
+  box-shadow: 0 0 20px 3px hsla(212,7%,43%,.3);
+  background-color: #f9f1eb;
   padding: 1rem;
   border-radius: 1rem;
   gap: 1rem;

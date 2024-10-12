@@ -3,6 +3,7 @@ import React from "react";
 import styles from "./Bill.module.scss";
 
 import BillItem from "./BillItem/BillItem";
+import Button from "@/components/UI/Button/Button";
 
 const Bill = ({ party, items, editItem, removeItem, hideBill, showBill }) => {
   const removeItemHandler = (id) => {
@@ -27,9 +28,12 @@ const Bill = ({ party, items, editItem, removeItem, hideBill, showBill }) => {
       </div>
       {items.length > 1 && (
         <div className={styles["bill__hide-bill"]}>
-          <button className={styles["bill__hide-bill__button"]} onClick={() => showBill()}>
+          <Button color={'blue'} customClass={'small'} onClick={() => showBill()}>
             {hideBill ? "Mostrar cuenta" : "Esconder cuenta"}
-          </button>
+          </Button>
+          {/* <button className={styles["bill__hide-bill__button"]} onClick={() => showBill()}>
+            {hideBill ? "Mostrar cuenta" : "Esconder cuenta"}
+          </button> */}
         </div>
       )}
     </div>

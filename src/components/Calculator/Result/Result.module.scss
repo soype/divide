@@ -1,0 +1,25 @@
+.result{
+
+    box-shadow: 0 0 20px 3px hsla(212,7%,43%,.3);
+    background-color: #f9f1eb;
+    border-radius: 1rem;
+    padding: 1rem;
+    &__members{
+        padding: 1rem 0;
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+        li{
+            margin-left: 1rem;
+        }
+    }
+
+}
+
+.receive{
+    color: rgb(51, 156, 54);
+}
+
+.pay{
+    color: rgb(199, 42, 42);
+}

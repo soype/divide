@@ -6,6 +6,10 @@
     flex-direction: column;
     gap: 1rem;
 
+    h1{
+        color: white;
+    }
+
     @media all and (max-width: 768px){
         flex-direction: column;
     }
