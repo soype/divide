@@ -31,9 +31,6 @@ const Bill = ({ party, items, editItem, removeItem, hideBill, showBill }) => {
           <Button color={'blue'} customClass={'small'} onClick={() => showBill()}>
             {hideBill ? "Mostrar cuenta" : "Esconder cuenta"}
           </Button>
-          {/* <button className={styles["bill__hide-bill__button"]} onClick={() => showBill()}>
-            {hideBill ? "Mostrar cuenta" : "Esconder cuenta"}
-          </button> */}
         </div>
       )}
     </div>

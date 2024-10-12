@@ -82,7 +82,7 @@ const Calculator = () => {
 ]);
   const [editedItem, setEditedItem] = useState(null);
   const [showResults, setShowResults] = useState(false);
-  const [hideBill, setHideBill] = useState(false);
+  const [hideBill, setHideBill] = useState(true);
   const [editMember, setEditMember] = useState();
   const [showModal, setShowModal] = useState(false);
 
