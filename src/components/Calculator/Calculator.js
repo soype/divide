@@ -12,74 +12,8 @@ import Modal from "./PartyModal/Modal";
 import styles from "./Calculator.module.scss";
 
 const Calculator = () => {
-  const [party, setParty] = useState([
-    {
-        "id": "0.196",
-        "name": "Pedro",
-        "email": "",
-        "color": "#D1462F"
-    },
-    {
-        "id": "0.319",
-        "name": "Carla",
-        "email": "",
-        "color": "#0A81D1"
-    },
-    {
-        "id": "0.276",
-        "name": "Fede",
-        "email": "",
-        "color": "#FD8B51"
-    },
-    {
-        "id": "0.801",
-        "name": "Lina",
-        "email": "",
-        "color": "#D90368"
-    }
-]);
-  const [items, setItems] = useState([
-    {
-        "id": "0.669",
-        "name": "Carne",
-        "quantity": "1",
-        "price": "8000",
-        "members": [
-            "0.196",
-            "0.319"
-        ]
-    },
-    {
-        "id": "0.298",
-        "name": "Franui",
-        "quantity": "3",
-        "price": "3125",
-        "members": [
-            "0.196",
-            "0.319"
-        ]
-    },
-    {
-        "id": "0.061",
-        "name": "Pepsi",
-        "quantity": "2",
-        "price": "2500",
-        "members": [
-            "0.276",
-            "0.801"
-        ]
-    },
-    {
-        "id": "0.670",
-        "name": "Pan",
-        "quantity": "1",
-        "price": "1800",
-        "members": [
-            "0.276",
-            "0.801"
-        ]
-    }
-]);
+  const [party, setParty] = useState([]);
+  const [items, setItems] = useState([]);
   const [editedItem, setEditedItem] = useState(null);
   const [showResults, setShowResults] = useState(false);
   const [hideBill, setHideBill] = useState(true);
