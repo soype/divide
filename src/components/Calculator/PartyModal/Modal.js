@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import styles from "./Modal.module.scss";
 
@@ -7,6 +7,24 @@ import Button from "@/components/UI/Button/Button";
 const Modal = ({ editMember, showModal, addMember, removeMember }) => {
   const [name, setName] = useState(editMember ? editMember.name : "");
   const [email, setEmail] = useState(editMember ? editMember.email : "");
+  const modalRef = useRef(null);
+
+  const adjustModalPosition = () => {
+    const windowHeight = window.innerHeight;
+    if (modalRef.current) {
+      modalRef.current.style.top = `${windowHeight / 2}px`;
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', adjustModalPosition);
+    window.addEventListener('orientationchange', adjustModalPosition);
+
+    return () => {
+      window.removeEventListener('resize', adjustModalPosition);
+      window.removeEventListener('orientationchange', adjustModalPosition);
+    };
+  }, []);
 
   const submitModalHandler = (e) => {
     e.preventDefault();

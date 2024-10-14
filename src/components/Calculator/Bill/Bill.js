@@ -26,7 +26,7 @@ const Bill = ({ party, items, editItem, removeItem, hideBill, showBill }) => {
           </div>
         </div>
       </div>
-      {items.length > 1 && (
+      {items.length > 0 && (
         <div className={styles["bill__hide-bill"]}>
           <Button color={'blue'} customClass={'small'} onClick={() => showBill()}>
             {hideBill ? "Mostrar cuenta" : "Esconder cuenta"}

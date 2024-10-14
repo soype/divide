@@ -16,7 +16,6 @@ const AddMember = ({addMember}) => {
 
   return (
     <form className={styles.form} onSubmit={addMemberHandler}>
-        {/* <input type="text" onChange={(e) => setName(e.currentTarget.value)} value={name} placeholder="Agregar integrante"/> */}
         <button className={styles['form__submit']}>Agregar</button>
     </form>
   )
