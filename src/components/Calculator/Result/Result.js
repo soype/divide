@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import formatNumber from "@/lib/FormatNumber";
+import Button from "@/components/UI/Button/Button";
 
 import styles from "./Result.module.scss";
 
@@ -56,6 +57,7 @@ const Result = ({ items, members }) => {
             </p>
           </li>
         ))}
+        <Button color='verde' customClass='small' onClick={() => console.log('Enviar email')}>Enviar información por mail</Button>
       </ul>
     </div>
   );
